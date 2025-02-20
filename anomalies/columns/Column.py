@@ -26,5 +26,5 @@ class Column:
     def dataUi(self):
         return list(map(lambda x: abs((x - self.paramAvg()) / self.paramDeviation()), self.dataSorted()))
     def dataWithoutAnomalies(self):
-        return list(filter(lambda x: abs((x - self.paramAvg()) / self.paramDeviation()) <= self._beta, self.data))
+        return list(filter(lambda x: abs((x - self.paramAvg()) / self.paramDeviation()) <= self._beta, self.dataSorted()))
     
