@@ -19,9 +19,6 @@ class Column:
         return self._dataDeviation
     def dataSorted(self):
         raise NotImplementedError()
-    def dataUI(self):
+    def dataUi(self):
         return map(lambda x: abs((x - self.dataAvg()) / self.dataDeviation()), self.dataSorted())
-    
-    def putExcel(self, workbook):
-        raise NotImplementedError()
     

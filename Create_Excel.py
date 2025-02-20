@@ -1,6 +1,10 @@
 import os
 from openpyxl import Workbook
-from openpyxl.styles import Font, Alignment, Border, Side, NumberFormatDescriptor
+from openpyxl.styles import Font, Alignment, Border, Side
+
+from anomalies.columns.InitialColumn import InitialColumn
+from anomalies.excel.ExcelLogger import ExcelLogger
+from common.constants import ANOMALIES_SHEET_NAME
 
 def Create_excel(Data, name, root_directory):
     workbook = Workbook()
@@ -94,8 +98,12 @@ def Create_excel(Data, name, root_directory):
                     FillingInTheTable(9, Data[key], sheet)
                 elif SYS_WAFERID == 3:
                     FillingInTheTable(10, Data[key], sheet)
-#----------------Лист-2 "Аномальные" ----------------------------------|
-    #/// Сюда пропиши как ты свой лист заполнишь
+    #----------------Лист-2 "Аномальные" ----------------------------------|
+    sheet = workbook.create_sheet(ANOMALIES_SHEET_NAME)
+    column = InitialColumn([1, 2, 3, 4, 5], 3)
+    logger = ExcelLogger(column, sheet)
+    logger.logColumn()
+
 
 
     Save_file(workbook, name, root_directory)
