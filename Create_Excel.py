@@ -1,7 +1,6 @@
 import os
 from openpyxl import Workbook
 from openpyxl.styles import Font, Alignment, Border, Side
-
 from anomalies.AnomaliesFilter import AnomaliesFilter
 
 def Create_excel(Data, BigData, name, root_directory):
