@@ -2,9 +2,7 @@ import os
 from openpyxl import Workbook
 from openpyxl.styles import Font, Alignment, Border, Side
 
-from anomalies.columns.InitialColumn import InitialColumn
-from anomalies.excel.ExcelLogger import ExcelLogger
-from common.constants import ANOMALIES_SHEET_NAME
+from anomalies.AnomaliesFilter import AnomaliesFilter
 
 def Create_excel(Data, BigData, name, root_directory):
     workbook = Workbook()
@@ -99,10 +97,8 @@ def Create_excel(Data, BigData, name, root_directory):
                 elif SYS_WAFERID == 3:
                     FillingInTheTable(10, Data[key], sheet)
     #----------------Лист-2 "Аномальные" ----------------------------------|
-    sheet = workbook.create_sheet(ANOMALIES_SHEET_NAME)
-    column = InitialColumn(BigData, 3)
-    logger = ExcelLogger(column, sheet)
-    logger.logColumn()
+    anomaliesFilter = AnomaliesFilter(BigData, workbook)
+    anomaliesFilter.logOutput()
 
 
 

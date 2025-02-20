@@ -1,4 +1,4 @@
-from Column import Column
+from anomalies.columns.Column import Column
 from common.constants import ANOMALIES_SHEET_NAME
 
 class IterationalColumn(Column):

@@ -1,4 +1,5 @@
 ANOMALIES_SHEET_NAME="Аномалии"
+ANOMALIES_BETA=3
 ANOMALIES_PARAMS_HEADINGS = ["N", "Ср.знач", "Ср.кв.откл", "β"]
 ANOMALIES_PARAMS_VALUES = ["paramCount", "paramAvg", "paramDeviation", "paramBeta"]
 ANOMALIES_DATA_HEADINGS = {
