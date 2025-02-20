@@ -22,8 +22,8 @@ while True:
 
     # -------Извлекаем необходимые данные из файлов и переносим их в новый xlsx файл
     Data = Data_create(root_directory, folder_1_name, folder_2_name, name)
-    Biiig_Data = Generation_BigDate(Data)  # Список со всеми значениями
-    Create_excel(Data, name, root_directory)
+    BigData = Generation_BigDate(Data)  # Список со всеми значениями
+    Create_excel(Data, BigData, name, root_directory)
 
 
 

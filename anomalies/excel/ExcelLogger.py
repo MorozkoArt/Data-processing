@@ -20,7 +20,6 @@ class ExcelLogger:
         for index, heading in enumerate(ANOMALIES_DATA_HEADINGS[type(self.column).__name__]):
             self.sheet.cell(row=1+offset["row"],column=1+index+offset["col"], value=heading)
         offset["row"] += 1
-        print(offset)
         for functionIndex, function in enumerate(ANOMALIES_DATA_VALUES[type(self.column).__name__]):
             list = getattr(self.column, function)()
             for valueIndex, value in enumerate(list):

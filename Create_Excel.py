@@ -6,7 +6,7 @@ from anomalies.columns.InitialColumn import InitialColumn
 from anomalies.excel.ExcelLogger import ExcelLogger
 from common.constants import ANOMALIES_SHEET_NAME
 
-def Create_excel(Data, name, root_directory):
+def Create_excel(Data, BigData, name, root_directory):
     workbook = Workbook()
 #----------------Лист-1 "Данные" ----------------------------------|
     sheet = workbook.active
@@ -100,7 +100,7 @@ def Create_excel(Data, name, root_directory):
                     FillingInTheTable(10, Data[key], sheet)
     #----------------Лист-2 "Аномальные" ----------------------------------|
     sheet = workbook.create_sheet(ANOMALIES_SHEET_NAME)
-    column = InitialColumn([1, 2, 3, 4, 5], 3)
+    column = InitialColumn(BigData, 3)
     logger = ExcelLogger(column, sheet)
     logger.logColumn()
 
