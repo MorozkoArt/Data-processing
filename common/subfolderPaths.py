@@ -1,6 +1,5 @@
 import os
-from common.utils import subfolderNotFoundWarning
-
+from common.subfolderNotFoundWarning import subfolderNotFoundWarning
 
 def subfolderPaths(root, subfolders):
     left = subfolders.copy()

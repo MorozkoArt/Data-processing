@@ -1,4 +1,5 @@
 SUBFOLDERS=["PM", "PMinDie"]
+RESULT_FOLDER="Results"
 
 ANOMALIES_SHEET_NAME="Аномалии"
 ANOMALIES_BETA=3
@@ -45,3 +46,19 @@ ANOMALIES_ERROR_TEXT_COLOR="FFFFFF"
 ANOMALIES_ERROR_BACKGROUND_COLOR="FF0000"
 ANOMALIES_SUCCESS_TEXT_COLOR="000000"
 ANOMALIES_SUCCESS_BACKGROUND_COLOR="00FF00"
+
+PARSED_SHEET_NAME="Данные"
+PARSED_HEADINGS={
+    "4": {
+        "PMinDie": ["1", "2"],
+        "PM": ["3", "4"]
+    },
+    "8": {
+        "PM": ["2", "3", "4"]
+    },
+    "9": {
+        "PMinDie": ["1", "2", "3"],
+        "PM": ["15", "16", "17"]
+    },
+}
+PARSED_NUMBER_FORMAT="0.00E+00"
