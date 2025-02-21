@@ -19,10 +19,10 @@ class AnomaliesFilter:
         while not self.processEnd(column):
             self.logColumn(column)
             column = IterationalColumn(self.data, ANOMALIES_BETA)
-        self.logColumn(column)
-    def logColumn(self, column):
+        self.logColumn(column, True)
+    def logColumn(self, column, final=False):
         initialColumnLogger = ExcelLogger(column, self.sheet, self.offset)
-        initialColumnLogger.logColumn()
+        initialColumnLogger.logColumn(final)
         self.data = column.dataWithoutAnomalies()
         self.offset["col"] += self.columnOffset(column) + 1
     def processEnd(self, column):
