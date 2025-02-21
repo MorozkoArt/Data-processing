@@ -2,8 +2,7 @@ import os
 from pathlib import Path
 import shutil
 import openpyxl
-from openpyxl.cell import Cell
-from common.utils import subfolderNotFoundWarning
+from common.subfolderPaths import subfolderPaths
 
 
 class XLSXConverter:
@@ -11,7 +10,7 @@ class XLSXConverter:
         self.root = root
         self.subfolders = subfolders
     def AD5TtoXLSX(self):
-        subPaths = self.subfolderPaths()
+        subPaths = subfolderPaths(self.root, self.subfolders)
         for subPath in subPaths:
             for file in os.listdir(subPath):
                 path = os.path.join(subPath, file)
@@ -42,15 +41,3 @@ class XLSXConverter:
             txtPath = path.with_suffix('.txt')
             shutil.copyfile(path, txtPath)
             return txtPath
-    def subfolderPaths(self):
-        left = self.subfolders.copy()
-        paths = []
-        for item in os.listdir(self.root):
-            path = os.path.join(self.root, item)
-            if os.path.isdir(path):
-                if item in self.subfolders:
-                    paths.append(path)
-                    left.remove(item)
-        for item in left:
-            subfolderNotFoundWarning(item)
-        return paths
