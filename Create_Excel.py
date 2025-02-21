@@ -1,8 +1,9 @@
 import os
 from openpyxl import Workbook
-from openpyxl.styles import Font, Alignment, Border, Side, NumberFormatDescriptor
+from openpyxl.styles import Font, Alignment, Border, Side
+from anomalies.AnomaliesFilter import AnomaliesFilter
 
-def Create_excel(Data, name, root_directory):
+def Create_excel(Data, BigData, name, root_directory):
     workbook = Workbook()
 #----------------Лист-1 "Данные" ----------------------------------|
     sheet = workbook.active
@@ -94,8 +95,10 @@ def Create_excel(Data, name, root_directory):
                     FillingInTheTable(9, Data[key], sheet)
                 elif SYS_WAFERID == 3:
                     FillingInTheTable(10, Data[key], sheet)
-#----------------Лист-2 "Аномальные" ----------------------------------|
-    #/// Сюда пропиши как ты свой лист заполнишь
+    #----------------Лист-2 "Аномальные" ----------------------------------|
+    anomaliesFilter = AnomaliesFilter(BigData, workbook)
+    anomaliesFilter.logOutput()
+
 
 
     Save_file(workbook, name, root_directory)
