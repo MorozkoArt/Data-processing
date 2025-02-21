@@ -1,3 +1,5 @@
+SUBFOLDERS=["PM", "PMinDie"]
+
 ANOMALIES_SHEET_NAME="Аномалии"
 ANOMALIES_BETA=3
 ANOMALIES_PARAMS_HEADINGS = ["N", "Ср.знач", "Ср.кв.откл", "β"]
