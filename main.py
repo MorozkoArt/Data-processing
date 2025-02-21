@@ -1,29 +1,29 @@
-from Converters.Converter_ad5t_To_xlsx import ad5t_TO_xlsx
-from Extract_data import Data_create
-from Create_Excel import Create_excel
+from anomalies.AnomaliesFilter import AnomaliesFilter
+from common.constants import SUBFOLDERS
+from common.outputFilepath import outputFilePath
+from converters.XLSXConverter import XLSXConverter
+from parsing.DataParser import DataParser
+from openpyxl import Workbook
 
-def Generation_BigDate(Data1):
-    Biiig_Data_list = []
-    for key in Data1:
-        for i in range(len(Data1[key])):
-            Biiig_Data_list.append(Data1[key][i])
-    return Biiig_Data_list
+def createExcel(param, root):
+    workbook = Workbook()
+    dataParser = DataParser(root, SUBFOLDERS, param, workbook)
+    dataParser.logOutput()
+    bigData = dataParser.getBigData()
 
-folder_1_name = "PM"
-folder_2_name = "PMinDie"
-root_directory = input("Введите путь к директории, в которой хранятся папки: \"PM\" и \"PMinDie\": ")
+    anomaliesFilter = AnomaliesFilter(bigData, workbook)
+    anomaliesFilter.logOutput()
 
-while True:
-    name = input("Введите название из списка параметров (Для завершения введите \"End\"): ")
-    if name == "End":
-        exit()
-    # -------Если файлы не в .xlsx, то конвертируем
-    ad5t_TO_xlsx(root_directory, folder_1_name, folder_2_name)
+    workbook.save(outputFilePath(root, param))
 
-    # -------Извлекаем необходимые данные из файлов и переносим их в новый xlsx файл
-    Data = Data_create(root_directory, folder_1_name, folder_2_name, name)
-    BigData = Generation_BigDate(Data)  # Список со всеми значениями
-    Create_excel(Data, BigData, name, root_directory)
+def main():
+    root = input("root: ") # move to lanch param
+    while True:
+        param = input("param: ") # move to launch param
+        converter = XLSXConverter(root, SUBFOLDERS)
+        converter.AD5TtoXLSX()
+        createExcel(param, root)
 
-
+if __name__ == "__main__":
+    main()
 
